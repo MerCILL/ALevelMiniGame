@@ -8,7 +8,7 @@ namespace Module2MiniGame.Interfaces
 {
     internal interface IGame
     {
-        ICharacter character { get; set;  }
+        ICharacter Character { get; set; }
          
         bool IsUltimateAvailable { get; set; }
         void StartBattle();
