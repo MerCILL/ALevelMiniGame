@@ -5,50 +5,41 @@ namespace Module2MiniGame.Models
 {
     internal class Hero : ICharacter
     {
-        public List<IEquipment> Equipment { get; set; } = new List<IEquipment>();
+        public List<IEquipment> Equipment { get; set; } = new List<IEquipment>(2);
+        public List<string> Names { get; set; } = new List<string> { "Wizzard", "Warrior" };
 
-        public bool Heal { get; set; }
         public int BaseHealth { get; set; } = 100;
         public int BaseDamage { get; set; } = 20;
         public int BaseBlock { get; set; } = 10;
-        public int AttackBonus { get; set; }
 
         public string UltimateDescription => "Unleashes a powerful attack.";
 
         public int Attack()
         {
-            var totalDamage = BaseDamage;
-
-            // Учесть бонусы от экипировки и других факторов
-            foreach (var equipment in Equipment)
-            {
-                totalDamage += equipment.AttackBonus;
-            }
-
-            WriteLine($"Hero attacks for {totalDamage} damage!");
-
-            return totalDamage;
+            int totalEquipmentDamage = Equipment.Sum(e => e.DamageImpact);
+            return BaseDamage + totalEquipmentDamage;
         }
 
         public int Block()
         {
-            WriteLine($"Hero raises their shield and blocks for {BaseBlock} damage!");
-            return BaseBlock;
+            int totalEquipmentBlock = Equipment.Sum(e => e.BlockImpact);
+            return BaseBlock + totalEquipmentBlock;
         }
 
         public int UseUltimate()
         {
-            WriteLine(UltimateDescription);
+            var oldBaseDamage = this.BaseDamage;
+            this.BaseDamage *= 2;
 
-            var ultimateDamage = BaseDamage * 2;   // Удвоение базового урона для ультимативной атаки
-            WriteLine($"Hero uses ultimate attack for {ultimateDamage} damage!");
-
-            return ultimateDamage;
+            return oldBaseDamage;
         }
 
         public ICharacter ResetCharacter()
         {
-            return new Hero(); // Создаем нового героя с базовыми характеристиками
+            return new Hero()
+            {
+                Equipment = new List<IEquipment>(Equipment)
+            }; // Создаем нового героя с базовыми характеристиками
         }
     }
 }
