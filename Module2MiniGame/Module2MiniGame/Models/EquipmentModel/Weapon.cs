@@ -11,10 +11,10 @@ namespace Module2MiniGame.Models.EquipmentModel
     {
         private static readonly Random _random = new Random();
         private static readonly WeaponTitle[] _titles = (WeaponTitle[])Enum.GetValues(typeof(WeaponTitle));
-        public override string Title => _titles[_random.Next(0, _titles.Length)].ToString();
 
         public Weapon()
         {
+            Title = _titles[_random.Next(0, _titles.Length)].ToString();
             DamageImpact = _random.Next(2, 20);
             BlockImpact = _random.Next(0, 10);
             EquipementType = EquipmentType.Weapon;
@@ -25,7 +25,19 @@ namespace Module2MiniGame.Models.EquipmentModel
             this.DamageImpact = damageImpact;
             this.BlockImpact = blockImpact;
             this.EquipementType = EquipmentType.Weapon;
+            this.Title = _titles[_random.Next(0, _titles.Length)].ToString();
         }
+
+        public Weapon(EquipmentType equipmentType, string Title) : base(equipmentType, Title)
+        {
+            DamageImpact = _random.Next(2, 20);
+            BlockImpact = _random.Next(0, 10);
+        }
+
+        public Weapon(IEquipment equipment) : base(equipment) { }
+
+        public Weapon(EquipmentType equipmentType, string Title, int damageImpact, int blockImpact)
+            : base(equipmentType, Title, damageImpact, blockImpact) { }
+
     }
- 
 }

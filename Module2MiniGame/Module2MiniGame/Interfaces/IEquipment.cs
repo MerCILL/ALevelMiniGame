@@ -9,7 +9,7 @@ namespace Module2MiniGame.Interfaces
     internal interface IEquipment
     {
         EquipmentType EquipementType { get; set; }
-        string Title { get; }
+        string Title { get; set; }
         int DamageImpact { get; set;  }  
         int BlockImpact { get; set;  }
     }
