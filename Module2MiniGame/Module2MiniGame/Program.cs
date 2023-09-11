@@ -1,4 +1,5 @@
-﻿using Module2MiniGame.Interfaces;
+using Module2MiniGame.Interfaces;
+using Module2MiniGame.Models.EquipmentModel;
 
 namespace Module2MiniGame
 {
@@ -9,3 +10,4 @@ namespace Module2MiniGame
         }
     }
 }
+
