@@ -1,5 +1,6 @@
 ﻿using static System.Console;
 using Module2MiniGame.Interfaces;
+using Module2MiniGame.Models.EquipmentModel;
 
 namespace Module2MiniGame.Models
 {
@@ -31,7 +32,7 @@ namespace Module2MiniGame.Models
         {
             var random = new Random();
             var equipmentTypes = Enum.GetValues(typeof(EquipmentType)).Cast<EquipmentType>().ToList();
-
+        
             foreach (var equipmentType in equipmentTypes)
             {
                 // Генерация случайного снаряжения для каждого типа
@@ -43,7 +44,7 @@ namespace Module2MiniGame.Models
                     BlockImpact = random.Next(1, 5), // Задайте диапазон для воздействия блока
                     AttackBonus = random.Next(1, 5) // Задайте диапазон для бонуса атаки
                 };
-
+        
                 Equipment.Add(equipment);
             }
         }

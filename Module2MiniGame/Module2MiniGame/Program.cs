@@ -7,6 +7,8 @@ namespace Module2MiniGame
     {
         static void Main()
         {
+            GameInterface game = new GameInterface();
+            game.RunApp();
         }
     }
 }
